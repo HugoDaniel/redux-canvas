@@ -1,0 +1,19 @@
+{
+	"parser": "babel-eslint",
+	"rules": {
+		"strict": 0,
+		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+ 		"no-multi-spaces": [2, {"exceptions": {"VariableDeclarator": true, "ImportDeclaration": true, "Property": true}}],
+		"new-cap": [2, {
+  		"capIsNewExceptions": ["Immutable.Map", "Immutable.Set", "Immutable.List", "Immutable.Record"]
+		}],
+		"indent": ["error", "tab"],
+		"quotes": [2, "double", {"avoidEscape": true, "allowTemplateLiterals": true}],
+		"comma-style": ["error", "first", { "exceptions": { "VariableDeclaration": true } }],
+		"comma-dangle": ["error", "never"],
+		"max-len": ["error", 80, 4],
+		"array-bracket-spacing": ["error", "always", { "singleValue": false, "objectsInArrays": false }],
+		"key-spacing": ["error", { "align": "value" }]
+	},
+	extends: ["airbnb"]
+}
