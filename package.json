@@ -1,0 +1,26 @@
+{
+  "name": "redux-canvas",
+  "version": "1.0.0",
+  "description": "Canvas middleware for Redux.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HugoDaniel/redux-canvas.git"
+  },
+  "keywords": [
+    "redux",
+    "canvas",
+    "middleware",
+    "redux-middleware",
+    "flux"
+  ],
+  "author": "Hugo Daniel <mr.hugo.gomes@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/HugoDaniel/redux-canvas/issues"
+  },
+  "homepage": "https://github.com/HugoDaniel/redux-canvas#readme"
+}
