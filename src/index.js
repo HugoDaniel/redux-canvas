@@ -71,6 +71,7 @@ const canvas = state => {
 						}
 						contexts.delete(m.startAnim);
 						break;
+					default: continue;
 					}
 				}
 			}
