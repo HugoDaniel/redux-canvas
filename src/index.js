@@ -1,5 +1,5 @@
 const canvas = state => {
-	if (typeof state !== "object") {
+	if (state === null || typeof state !== "object") {
 		throw new Error("canvasMiddleware: state is not an object");
 	}
 	return next => {
@@ -8,11 +8,12 @@ const canvas = state => {
 		const contexts = new Map();
 		const animations = new Map();
 		const paintOnce = [];
-		const win = window || state.window; // allow testing in node
+		// eslint-disable-next-line no-use-before-define
+		const window = window || state.window;
 
 		function loop(t) {
 			if (animations.size > 0) {
-				frameId = win.requestAnimationFrame(loop);
+				frameId = window.requestAnimationFrame(loop);
 			} else {
 				frameId = null;
 			}
@@ -33,7 +34,8 @@ const canvas = state => {
 				for (let i = 0; i < keys.length; i++) {
 					switch (keys[i]) {
 					case "registerContext":
-						if (typeof m.registerContext.ctx !== "object" ||
+						if (m.registerContext.ctx === null ||
+						    typeof m.registerContext.ctx !== "object" ||
 						    typeof m.registerContext.name !== "string") {
 							throw new Error(`"registerContext" expects ctx 
 							                to be an object and name to be 
@@ -62,21 +64,21 @@ const canvas = state => {
 							                 a function and name to be a 
 							                 string. Got ${m}`);
 						}
-						contexts.set(m.startAnim.name, m.startAnim.anim);
+						animations.set(m.startAnim.name, m.startAnim.anim);
 						break;
 					case "stopAnim":
 						if (typeof m.stopAnim !== "string") {
 							throw new Error(`stopAnim expects a string.
 							                 Got: ${m}`);
 						}
-						contexts.delete(m.startAnim);
+						animations.delete(m.stopAnim);
 						break;
 					default: continue;
 					}
 				}
 			}
 			if (!frameId && (paintOnce.length > 0 || animations.size > 0)) {
-				win.requestAnimationFrame(loop);
+				frameId = window.requestAnimationFrame(loop);
 			}
 			return result;
 		};
