@@ -1,15 +1,12 @@
 import chai from "chai";
 import canvasMiddleware from "../src/index";
 
-let window = { requestAnimationFrame: f => setTimeout(f, 20) }
-
 describe("canvas middleware", () => {
   const doDispatch = () => {};
   const doGetState = () => {};
   const nextHandler = canvasMiddleware(
 	                      { dispatch: doDispatch
 	                      , getState: doGetState
-	                      , window
 	                      });
 	
 	describe("handle action", () => {

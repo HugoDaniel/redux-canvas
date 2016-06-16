@@ -8,12 +8,14 @@ const canvas = state => {
 		const contexts = new Map();
 		const animations = new Map();
 		const paintOnce = [];
-		// eslint-disable-next-line no-use-before-define
-		const window = window || state.window;
-
+		// requestAnimationFrame fallback
+		let raf = f => setTimeout(f, 20);
+		if (typeof window !== "undefined" && window.requestAnimationFrame) {
+			raf = window.requestAnimationFrame;
+		}
 		function loop(t) {
 			if (animations.size > 0) {
-				frameId = window.requestAnimationFrame(loop);
+				frameId = raf(loop);
 			} else {
 				frameId = null;
 			}
@@ -28,7 +30,7 @@ const canvas = state => {
 
 		return action => {
 			const result = next(action);
-			const m = action.meta;
+			const m = action.meta || (action.action && action.action.meta);
 			if (m) {
 				const keys = Object.keys(m);
 				for (let i = 0; i < keys.length; i++) {
@@ -78,7 +80,7 @@ const canvas = state => {
 				}
 			}
 			if (!frameId && (paintOnce.length > 0 || animations.size > 0)) {
-				frameId = window.requestAnimationFrame(loop);
+				frameId = raf(loop);
 			}
 			return result;
 		};
