@@ -1,6 +1,6 @@
 {
   "name": "redux-canvas",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Canvas middleware for Redux.",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
