@@ -11,7 +11,7 @@ An action creator that uses a function to perform an action on a canvas context:
 const INIT_ALERT = "INIT_ALERT";
 const RED_ALERT = "RED_ALERT";
 
-// the actual painting function
+// the actual painting function that works on the canvas context
 // t is the requestAnimationFrame argument
 // contexts is the Map() of all registered canvas contexts
 // getState is the redux store state getter
@@ -22,9 +22,10 @@ function paintSquare(t, contexts, getState, dispatch) {
   ctx.fillRect(0,0,50,50);
 }
 
-// 1st register a context (call an action after a canvas is mounted)
-// this also calls a clear action on it (though you can just register it 
-// and do the painting later).
+// the redux action to register a context 
+// (you can call it after a canvas is mounted)
+// this also clears the context by specifying a function in "paintOnce" 
+// (though you can just register it and do the painting later).
 function initAlertCanvas(ctx) {
   return
     { type: INIT_ALERT
@@ -35,7 +36,7 @@ function initAlertCanvas(ctx) {
     };
 }
 
-// then the actual paint action
+// then the redux paint action
 // (in this example a red alert could be issued when something bad happens)
 function redAlertAction(world) {
   return 
