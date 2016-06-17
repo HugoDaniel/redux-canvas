@@ -17,33 +17,33 @@ const RED_ALERT = "RED_ALERT";
 // getState is the redux store state getter
 // dispatch is the redux store state updater
 function paintSquare(t, contexts, getState, dispatch) {
-	const ctx = contexts.get("alert");
-	ctx.fillStyle = "red";
-	ctx.fillRect(0,0,50,50);
+  const ctx = contexts.get("alert");
+  ctx.fillStyle = "red";
+  ctx.fillRect(0,0,50,50);
 }
 
 // 1st register a context (call an action after a canvas is mounted)
 // this also calls a clear action on it (though you can just register it 
 // and do the painting later).
 function initAlertCanvas(ctx) {
-	return
-		{ type: INIT_ALERT
-		, meta: 
-			{ registerContext: { name: "alert", ctx }
-			, paintOnce: (t, contexts) => contexts.get("alert").clearRect(0,0,800,600)
-			}
-		};
+  return
+    { type: INIT_ALERT
+    , meta: 
+      { registerContext: { name: "alert", ctx }
+      , paintOnce: (t, contexts) => contexts.get("alert").clearRect(0,0,800,600)
+      }
+    };
 }
 
 // then the actual paint action
 // (in this example a red alert could be issued when something bad happens)
 function redAlertAction(world) {
-	return 
-		{ type: RED_ALERT
-		, world: update(world) // your redux state update action
-		, meta: { paintOnce: paintSquare }
-		// ^ requestAnimationFrame will be called after the action has run
-		};
+  return 
+    { type: RED_ALERT
+    , world: update(world) // your redux state update action
+    , meta: { paintOnce: paintSquare }
+    // ^ requestAnimationFrame will be called after the action has run
+    };
 }
 ```
 
