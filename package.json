@@ -1,6 +1,6 @@
 {
   "name": "redux-canvas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Canvas middleware for Redux.",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -34,7 +34,7 @@
     "flux"
   ],
   "author": "Hugo Daniel <mr.hugo.gomes@gmail.com>",
-  "license": "GPL-3.0",
+  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/HugoDaniel/redux-canvas/issues"
   },
