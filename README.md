@@ -7,6 +7,8 @@ These painting functions are then stacked in a requestAnimationFrame and run as 
 
 An action creator that uses a function to perform an action on a canvas context:
 
+For more info [please read this blog post](http://www.hugodaniel.pt/posts/2016-06-17-react-redux-canvas.html)
+
 ```js
 const INIT_ALERT = "INIT_ALERT";
 const RED_ALERT = "RED_ALERT";
